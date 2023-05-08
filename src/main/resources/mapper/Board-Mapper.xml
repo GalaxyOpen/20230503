@@ -38,9 +38,7 @@
         select*from board_file_table where boardId = #{boardId}
     </select>
 
-    <select id="findAll" resultType="comment">
-        select *from comment_table
-    </select>
+
 </mapper>
 
 
