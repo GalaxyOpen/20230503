@@ -14,6 +14,9 @@
         #section a{
             display : block;
         }
+        comment-area{
+            align-content: center;
+        }
     </style>
 </head>
 <body>

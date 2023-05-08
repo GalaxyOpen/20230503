@@ -28,17 +28,23 @@
 <%--                </c:otherwise>--%>
 <%--            </c:choose>--%>
 <%--        </li>--%>
+        <li>
+            <a href="/board/paging">페이징목록</a>
+        </li>
+        <li class="login-name" id="login-area">
+
+        </li>
     </ul>
 </div>
-<%--<script>--%>
-<%--    const loginArea = document.getElementById("login-area");--%>
-<%--    const loginEmail= '${sessionScope.loginEmail}'--%>
-<%--    console.log(loginEmail.length);--%>
+<script>
+    const loginArea = document.getElementById("login-area");
+    const loginEmail= '${sessionScope.loginEmail}'
+    console.log(loginEmail.length);
 
-<%--    if(loginEmail.length !=0){--%>
-<%--        loginArea.innerHTML = "<a href='/mypage>' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+--%>
-<%--                                "<a href='/logout'>logout</a>";--%>
-<%--    }else {--%>
-<%--        loginArea.innerHTML = "<a href='/login'>login</a>";--%>
-<%--    }--%>
-<%--</script>--%>
+    if(loginEmail.length !=0){
+        loginArea.innerHTML = "<a href='/mypage>' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
+                                "<a href='/logout'>logout</a>";
+    }else {
+        loginArea.innerHTML = "<a href='/board/save'>글쓰기</a>";
+    }
+</script>

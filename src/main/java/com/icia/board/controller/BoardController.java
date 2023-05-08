@@ -3,6 +3,7 @@ package com.icia.board.controller;
 import com.icia.board.dto.BoardDTO;
 import com.icia.board.dto.BoardFileDTO;
 import com.icia.board.dto.CommentDTO;
+import com.icia.board.dto.PageDTO;
 import com.icia.board.service.BoardService;
 import com.icia.board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,24 @@ public class BoardController {
         return "boardPages/boardList";
     }
     // /board?id=1 => 상세조회를 할 때에는 파라미터값만 받아주면 된다. 그래서 GetMapping만 써도 된다.
+
+    //페이징처리 ↓
+    @GetMapping("/paging")
+    public String paging(@RequestParam(value="page", required=false, defaultValue = "1") int page,
+                         Model model){
+        //required=false, defaultValue="1" >> 페이지에 특정값이 있으면 넘어오고 없어도 상관없으며 없다면 밸류 값이 1이기에 1페이지가 나온다.
+        System.out.println("page = " + page);
+
+        // 사용자가 요청한 페이지에 해당하는 글 목록 데이터
+        List<BoardDTO> boardDTOList = boardService.pagingList(page);
+        System.out.println("boardDTOList = " + boardDTOList);
+        // 하단에 보여줄 페이지 번호 목록 데이터
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", boardDTOList);
+        model.addAttribute("paging", pageDTO); // 잠깐
+        return "boardPages/boardPaging";
+    }
+
     @GetMapping("")
     public String findById(@RequestParam("id") Long id, Model model){
         boardService.updateHits(id); // 조회수처리를 위한 코드

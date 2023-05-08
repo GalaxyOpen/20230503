@@ -38,6 +38,13 @@
         select*from board_file_table where boardId = #{boardId}
     </select>
 
+    <select id="paging" parameterType="java.util.HashMap" resultType="board">
+        select *from board_table order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(id) from board_table
+    </select>
 
 </mapper>
 
