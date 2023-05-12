@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -45,27 +46,56 @@ public class BoardController {
 
     //페이징처리 ↓
     @GetMapping("/paging")
-    public String paging(@RequestParam(value="page", required=false, defaultValue = "1") int page,
-                         Model model){
-        //required=false, defaultValue="1" >> 페이지에 특정값이 있으면 넘어오고 없어도 상관없으며 없다면 밸류 값이 1이기에 1페이지가 나온다.
-        System.out.println("page = " + page);
-
-        // 사용자가 요청한 페이지에 해당하는 글 목록 데이터
-        List<BoardDTO> boardDTOList = boardService.pagingList(page);
-        System.out.println("boardDTOList = " + boardDTOList);
-        // 하단에 보여줄 페이지 번호 목록 데이터
-        PageDTO pageDTO = boardService.pagingParam(page);
+    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                         @RequestParam(value = "q", required = false, defaultValue = "")String q,
+                         @RequestParam(value = "type", required = false, defaultValue = "boardTitle")String type,
+                         Model model) {
+        System.out.println("page = " + page + ", q = " + q);
+        List<BoardDTO> boardDTOList = null;
+        PageDTO pageDTO = null;
+        if (q.equals("")) {
+            // 사용자가 요청한 페이지에 해당하는 글 목록 데이터
+            boardDTOList = boardService.pagingList(page);
+            // 하단에 보여줄 페이지 번호 목록 데이터
+            pageDTO = boardService.pagingParam(page);
+        } else {
+            boardDTOList = boardService.searchList(page, type, q);
+            pageDTO = boardService.pagingSearchParam(page, type, q);
+        }
         model.addAttribute("boardList", boardDTOList);
-        model.addAttribute("paging", pageDTO); // 잠깐
+        model.addAttribute("paging", pageDTO);
+        model.addAttribute("q", q);
+        model.addAttribute("type", type);
         return "boardPages/boardPaging";
     }
+//    @GetMapping("/search")
+//    public String search(@RequestParam("q") String q, //1번째 파라미터 : 검색어 q
+//                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+//                         Model model) {
+//        List<BoardDTO> boardDTOList = boardService.searchList(page,q);
+//        PageDTO pageDTO = boardService.pagingSearchParam(page,q);
+//        // (page, q), (q,page) 순서는 신경 쓸 필요 없음.
+//        model.addAttribute("boardList", boardDTOList);
+//        model.addAttribute("paging", pageDTO);
+//        model.addAttribute("q", q);
+//        return "boardPages/boardPaging";
+//    }
 
-    @GetMapping("")
-    public String findById(@RequestParam("id") Long id, Model model){
+    @GetMapping
+    public String findById(@RequestParam("id") Long id, Model model,
+                           @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                           @RequestParam(value = "q", required = false, defaultValue = "") String q,
+                           @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type){
         boardService.updateHits(id); // 조회수처리를 위한 코드
+
+        //값이 잘 넘어오는걸 확인하고 싶으면 여기서 sout을 찍어본다.
+
         BoardDTO boardDTO = boardService.findById(id); //상세조회를 위한 코드
         // 이때 순서가 매우 중요한데 조회수처리 코드가 먼저 올라가야한다(조회수가 올라가고 나서, 상세조회를 불러와야 한다).
         model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        model.addAttribute("q", q);
+        model.addAttribute("type", type);
         if(boardDTO.getFileAttached()==1){
             List<BoardFileDTO> boardFileDTO = boardService.findFile(id);
             model.addAttribute("boardFileList", boardFileDTO);

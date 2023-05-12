@@ -56,7 +56,7 @@ public class BoardService {
                 // 저장할 경로 설정 (저장할폴더+저장할이름)
                 String savePath = "D:\\springframework_img\\" + storedFileName;
                 // 저장처리
-               boardFile.transferTo(new File(savePath));
+                boardFile.transferTo(new File(savePath));
                 boardRepository.saveFile(boardFileDTO);
             }
 
@@ -75,7 +75,6 @@ public class BoardService {
     }
 
     public void update(BoardDTO boardDTO) {
-
         boardRepository.update(boardDTO);
     }
 
@@ -95,7 +94,6 @@ public class BoardService {
         pagingParams.put("limit", pageLimit);
         List<BoardDTO> boardDTOList = boardRepository.pagingList(pagingParams);
         return boardDTOList;
-
     }
 
     public PageDTO pagingParam(int page) {
@@ -134,6 +132,45 @@ public class BoardService {
         pageDTO.setMaxPage(maxPage);
         pageDTO.setEndPage(endPage);
         pageDTO.setStartPage(startPage);
+        return pageDTO;
+    }
+
+    public List<BoardDTO> searchList(int page,String type,String q) {
+        int pageLimit = 3; // 한페이지에 보여줄 글 갯수
+        int pagingStart = (page-1) * pageLimit;
+        Map<String, Object> pagingParams = new HashMap<>();
+        pagingParams.put("start", pagingStart);
+        pagingParams.put("limit", pageLimit);
+        pagingParams.put("q", q);
+        pagingParams.put("type", type);
+        List<BoardDTO> boardDTOList = boardRepository.searchList(pagingParams);
+        return boardDTOList;
+    }
+
+    public PageDTO pagingSearchParam(int page,String type,String q) {
+        int pageLimit = 3; // 한페이지에 보여줄 글 갯수
+        int blockLimit = 3; // 하단에 보여줄 페이지 번호 갯수
+        Map<String, Object> pagingParams = new HashMap<>();
+        pagingParams.put("q", q);
+        pagingParams.put("type", type);
+        // 전체 글 갯수 조회
+        int boardCount = boardRepository.boardSearchCount(pagingParams);
+        // 전체 페이지 갯수 계산
+        int maxPage = (int) (Math.ceil((double)boardCount / pageLimit));
+        // 시작 페이지 값 계산(1, 4, 7, 10 ~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        // 마지막 페이지 값 계산(3, 6, 9, 12 ~~)
+        int endPage = startPage + blockLimit - 1;
+        // 전체 페이지 갯수가 계산한 endPage 보다 작을 때는 endPage 값을 maxPage 값과 같게 세팅
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setEndPage(endPage);
+        pageDTO.setStartPage(startPage);
+
         return pageDTO;
     }
 }

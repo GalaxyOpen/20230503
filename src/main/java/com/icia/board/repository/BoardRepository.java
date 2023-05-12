@@ -33,7 +33,6 @@ public class BoardRepository {
     }
 
     public void update(BoardDTO boardDTO) {
-
         sql.update("Board.update", boardDTO);
     }
 
@@ -59,5 +58,15 @@ public class BoardRepository {
 
     public int boardCount() {
         return sql.selectOne("Board.count");
+    }
+
+
+    public List<BoardDTO> searchList(Map<String, Object> pagingParams) {
+        return sql.selectList("Board.search", pagingParams);
+    }
+
+    public int boardSearchCount(Map<String, Object> pagingParams) {
+        return sql.selectOne("Board.searchCount", pagingParams);
+
     }
 }

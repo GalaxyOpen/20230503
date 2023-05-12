@@ -9,20 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35e874c7-fbe9-461f-8f23-4f6903127409" name="Changes" comment="2023.05.08 2차프로젝트 댓글 기능 교수님 강의 필기 완료">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/boardPaging.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap.bundle.min.js" afterDir="false" />
+    <list default="true" id="35e874c7-fbe9-461f-8f23-4f6903127409" name="Changes" comment="2023.05.08 2차프로젝트 페이징 기능 교수님 강의 필기 완료">
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/dto/PageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/dto/PageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/dto/BoardFileDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/dto/BoardFileDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/repository/BoardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/repository/BoardRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/icia/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icia/board/service/BoardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/Board-Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/Board-Mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/commnet-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/commnet-mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/boardDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/boardDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/component/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/component/nav.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/boardPaging.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardPages/boardPaging.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,11 +53,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/spring/board_20230503/src/main/webapp/resources/js",
+    "last_opened_file_path": "D:/spring/board_20230503",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -287,7 +285,14 @@
       <workItem from="1683070707600" duration="30942000" />
       <workItem from="1683155504111" duration="5165000" />
       <workItem from="1683161128762" duration="21572000" />
-      <workItem from="1683502196268" duration="20639000" />
+      <workItem from="1683502196268" duration="25328000" />
+      <workItem from="1683588952450" duration="11906000" />
+      <workItem from="1683612257460" duration="3003000" />
+      <workItem from="1683676169725" duration="3344000" />
+      <workItem from="1683692260505" duration="9971000" />
+      <workItem from="1683762230483" duration="7157000" />
+      <workItem from="1683771655754" duration="23239000" />
+      <workItem from="1683847547351" duration="3331000" />
     </task>
     <task id="LOCAL-00001" summary="2023.05.04 2차프로젝트 완료+댓글 기능 시도">
       <created>1683187316349</created>
@@ -303,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683514037828</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2023.05.08 2차프로젝트 페이징 기능 교수님 강의 필기 완료">
+      <created>1683533041178</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683533041178</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +324,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2023.05.04 2차프로젝트 완료+댓글 기능 시도" />
     <MESSAGE value="2023.05.08 2차프로젝트 댓글 기능 교수님 강의 필기 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="2023.05.08 2차프로젝트 댓글 기능 교수님 강의 필기 완료" />
+    <MESSAGE value="2023.05.08 2차프로젝트 페이징 기능 교수님 강의 필기 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023.05.08 2차프로젝트 페이징 기능 교수님 강의 필기 완료" />
   </component>
 </project>
